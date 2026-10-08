@@ -41,29 +41,29 @@ public class TemplatePickerActivity extends AppCompatActivity {
         Map<Integer, List<HabitTemplate>> map = new LinkedHashMap<>();
 
         List<HabitTemplate> health = new ArrayList<>();
-        health.add(new HabitTemplate("Drink water", "💧", "#3D6B8A"));
-        health.add(new HabitTemplate("Exercise", "🏃", "#C9742F"));
-        health.add(new HabitTemplate("Sleep 8 hours", "😴", "#7A5C9E"));
-        health.add(new HabitTemplate("Eat a healthy meal", "🥗", "#4F6F52"));
+        health.add(new HabitTemplate("Drink water", "💧", "#1E6FA8"));
+        health.add(new HabitTemplate("Exercise", "🏃", "#D9731F"));
+        health.add(new HabitTemplate("Sleep 8 hours", "😴", "#7B4FB0"));
+        health.add(new HabitTemplate("Eat a healthy meal", "🥗", "#13874F"));
         map.put(R.string.template_category_health, health);
 
         List<HabitTemplate> mind = new ArrayList<>();
-        mind.add(new HabitTemplate("Meditate", "🧠", "#2E8C84"));
-        mind.add(new HabitTemplate("Journal", "✍️", "#B14E7A"));
-        mind.add(new HabitTemplate("Read", "📚", "#5B5F56"));
-        mind.add(new HabitTemplate("Practice gratitude", "🙏", "#B0453E"));
+        mind.add(new HabitTemplate("Meditate", "🧠", "#1A8F86"));
+        mind.add(new HabitTemplate("Journal", "✍️", "#C44E82"));
+        mind.add(new HabitTemplate("Read", "📚", "#53615A"));
+        mind.add(new HabitTemplate("Practice gratitude", "🙏", "#C23B30"));
         map.put(R.string.template_category_mind, mind);
 
         List<HabitTemplate> productivity = new ArrayList<>();
-        productivity.add(new HabitTemplate("Plan tomorrow", "🎯", "#4F6F52"));
-        productivity.add(new HabitTemplate("No phone before bed", "📵", "#3D6B8A"));
-        productivity.add(new HabitTemplate("Tidy up", "🧹", "#C9742F"));
-        productivity.add(new HabitTemplate("Wake up early", "⏰", "#7A5C9E"));
+        productivity.add(new HabitTemplate("Plan tomorrow", "🎯", "#13874F"));
+        productivity.add(new HabitTemplate("No phone before bed", "📵", "#1E6FA8"));
+        productivity.add(new HabitTemplate("Tidy up", "🧹", "#D9731F"));
+        productivity.add(new HabitTemplate("Wake up early", "⏰", "#7B4FB0"));
         map.put(R.string.template_category_productivity, productivity);
 
         List<HabitTemplate> money = new ArrayList<>();
-        money.add(new HabitTemplate("Track spending", "💰", "#2E8C84"));
-        money.add(new HabitTemplate("Save money", "🌱", "#B14E7A"));
+        money.add(new HabitTemplate("Track spending", "💰", "#1A8F86"));
+        money.add(new HabitTemplate("Save money", "🌱", "#C44E82"));
         map.put(R.string.template_category_money, money);
 
         return map;

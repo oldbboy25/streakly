@@ -26,8 +26,8 @@ public class HabitSwipeCallback extends ItemTouchHelper.SimpleCallback {
     public HabitSwipeCallback(Listener listener) {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         this.listener = listener;
-        completePaint.setColor(Color.parseColor("#4F6F52"));
-        archivePaint.setColor(Color.parseColor("#B0453E"));
+        completePaint.setColor(Color.parseColor("#13874F"));
+        archivePaint.setColor(Color.parseColor("#C23B30"));
     }
 
     @Override

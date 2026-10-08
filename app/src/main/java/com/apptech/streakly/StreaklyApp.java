@@ -9,7 +9,6 @@ import androidx.lifecycle.ProcessLifecycleOwner;
 
 import com.apptech.streakly.backup.BackupManager;
 import com.apptech.streakly.repository.HabitRepository;
-import com.google.android.material.color.DynamicColors;
 
 public class StreaklyApp extends Application {
 
@@ -17,8 +16,11 @@ public class StreaklyApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-        // Material You dynamic color on Android 12+, graceful static fallback below that.
-        DynamicColors.applyToActivitiesIfAvailable(this);
+        // Dynamic color (Material You) is intentionally NOT applied here: it pulls
+        // tones from the device wallpaper, and some OEM skins (e.g. MIUI) apply it
+        // inconsistently across components, producing mismatched, muddy-looking
+        // surfaces. The app's own static palette (see themes.xml) is designed to be
+        // cohesive on every device, so we use that everywhere instead.
 
         // Silent rolling local backup every time the app goes to background —
         // this is what makes "uninstalling never loses your data" actually true.

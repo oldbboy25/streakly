@@ -44,8 +44,8 @@ public class AddEditHabitActivity extends AppCompatActivity {
     };
 
     private static final String[] COLOR_HEXES = {
-            "#4F6F52", "#3D6B8A", "#7A5C9E", "#C9742F",
-            "#B0453E", "#2E8C84", "#B14E7A", "#5B5F56"
+            "#13874F", "#1E6FA8", "#7B4FB0", "#D9731F",
+            "#C23B30", "#1A8F86", "#C44E82", "#53615A"
     };
 
     private HabitRepository repository;

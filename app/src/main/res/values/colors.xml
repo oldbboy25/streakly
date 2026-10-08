@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="md_primary">#4F6F52</color>
+    <color name="md_primary">#13874F</color>
     <color name="md_on_primary">#FFFFFF</color>
-    <color name="md_primary_container">#CFE8C9</color>
-    <color name="md_on_primary_container">#0C2003</color>
+    <color name="md_primary_container">#9EF0C4</color>
+    <color name="md_on_primary_container">#00210F</color>
 
-    <color name="md_secondary">#55624C</color>
-    <color name="md_secondary_container">#D9E7CA</color>
+    <color name="md_secondary">#2E6B4F</color>
+    <color name="md_secondary_container">#B3ECD0</color>
 
-    <color name="md_background">#FBFDF6</color>
-    <color name="md_on_background">#1A1C18</color>
-    <color name="md_surface">#FBFDF6</color>
-    <color name="md_surface_variant">#E0E4D6</color>
-    <color name="md_on_surface">#1A1C18</color>
-    <color name="md_on_surface_variant">#44483D</color>
-    <color name="md_outline">#74796C</color>
+    <color name="md_background">#F6FBF4</color>
+    <color name="md_on_background">#10201A</color>
+    <color name="md_surface">#F6FBF4</color>
+    <color name="md_surface_variant">#D9EBE1</color>
+    <color name="md_on_surface">#10201A</color>
+    <color name="md_on_surface_variant">#3A4A42</color>
+    <color name="md_outline">#6B7A71</color>
 
-    <color name="md_background_dark">#12140F</color>
-    <color name="md_surface_dark">#12140F</color>
-    <color name="md_on_surface_dark">#E2E3DB</color>
-    <color name="md_primary_dark">#B4D3AC</color>
-    <color name="md_on_primary_dark">#1F3817</color>
+    <color name="md_background_dark">#0C1712</color>
+    <color name="md_surface_dark">#0C1712</color>
+    <color name="md_on_surface_dark">#DCE8E0</color>
+    <color name="md_primary_dark">#7BE3AA</color>
+    <color name="md_on_primary_dark">#00391D</color>
 
-    <color name="flame_active">#FF8A3D</color>
-    <color name="flame_inactive">#C8CCC0</color>
-    <color name="chart_bar">#4F6F52</color>
-    <color name="chart_bar_track">#E0E4D6</color>
+    <color name="flame_active">#FF7A2E</color>
+    <color name="flame_inactive">#C3CEC6</color>
+    <color name="chart_bar">#13874F</color>
+    <color name="chart_bar_track">#D9EBE1</color>
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
 
     <!-- habit color swatch choices -->
-    <color name="swatch_green">#4F6F52</color>
-    <color name="swatch_blue">#3D6B8A</color>
-    <color name="swatch_purple">#7A5C9E</color>
-    <color name="swatch_orange">#C9742F</color>
-    <color name="swatch_red">#B0453E</color>
-    <color name="swatch_teal">#2E8C84</color>
-    <color name="swatch_pink">#B14E7A</color>
-    <color name="swatch_gray">#5B5F56</color>
+    <color name="swatch_green">#13874F</color>
+    <color name="swatch_blue">#1E6FA8</color>
+    <color name="swatch_purple">#7B4FB0</color>
+    <color name="swatch_orange">#D9731F</color>
+    <color name="swatch_red">#C23B30</color>
+    <color name="swatch_teal">#1A8F86</color>
+    <color name="swatch_pink">#C44E82</color>
+    <color name="swatch_gray">#53615A</color>
 </resources>

@@ -21,10 +21,10 @@ import java.util.Random;
 public class ConfettiView extends View {
 
     private static final int[] PALETTE = {
-            Color.parseColor("#4F6F52"), Color.parseColor("#3D6B8A"),
-            Color.parseColor("#7A5C9E"), Color.parseColor("#C9742F"),
-            Color.parseColor("#B0453E"), Color.parseColor("#2E8C84"),
-            Color.parseColor("#B14E7A")
+            Color.parseColor("#13874F"), Color.parseColor("#1E6FA8"),
+            Color.parseColor("#7B4FB0"), Color.parseColor("#D9731F"),
+            Color.parseColor("#C23B30"), Color.parseColor("#1A8F86"),
+            Color.parseColor("#C44E82")
     };
 
     private static class Particle {
