@@ -1,6 +1,7 @@
 package com.apptech.streakly.model;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "habit_completions")
@@ -20,6 +21,7 @@ public class HabitCompletion {
     public HabitCompletion() {
     }
 
+    @Ignore
     public HabitCompletion(long habitId, long epochDay, int count) {
         this.habitId = habitId;
         this.epochDay = epochDay;
