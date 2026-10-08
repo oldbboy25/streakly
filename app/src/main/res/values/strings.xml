@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Streakly</string>
+    <string name="widget_label">Streakly Today</string>
+
+    <string name="nav_today">Today</string>
+    <string name="nav_stats">Stats</string>
+    <string name="nav_settings">Settings</string>
+
+    <string name="today_title">Today</string>
+    <string name="today_empty_title">No habits yet</string>
+    <string name="today_empty_subtitle">Tap + to add your first habit</string>
+    <string name="today_completion_format">%1$d%% done today</string>
+
+    <string name="add_habit_title">New Habit</string>
+    <string name="edit_habit_title">Edit Habit</string>
+    <string name="habit_name_hint">Habit name</string>
+    <string name="frequency_label">Repeat</string>
+    <string name="frequency_daily">Daily</string>
+    <string name="frequency_specific_days">Specific days</string>
+    <string name="frequency_times_per_week">X times / week</string>
+    <string name="reminder_label">Reminder</string>
+    <string name="reminder_time_not_set">No reminder set</string>
+    <string name="action_save">Save</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="delete_confirm_title">Delete this habit?</string>
+    <string name="delete_confirm_message">Its history will be deleted too. This can\'t be undone unless you have a backup.</string>
+    <string name="error_name_required">Give your habit a name</string>
+
+    <string name="streak_current_format">%1$d day streak</string>
+    <string name="streak_longest_format">Best: %1$d days</string>
+
+    <string name="stats_overview_title">Overview</string>
+    <string name="stats_total_habits_format">%1$d active habits</string>
+    <string name="stats_total_completions_format">%1$d check-ins all time</string>
+    <string name="stats_best_streak_format">Best streak: %1$d days</string>
+    <string name="stats_last_7_days">Last 7 days</string>
+
+    <string name="settings_promise_title">Our promise</string>
+    <string name="settings_promise_body">No account. No ads. No subscription. No habit limit, ever. Everything you see here lives only on this device — nothing is uploaded unless you export it yourself.</string>
+    <string name="settings_backup_title">Backup &amp; restore</string>
+    <string name="settings_export">Export my data</string>
+    <string name="settings_import">Import from backup</string>
+    <string name="settings_last_backup_format">Last backup: %1$s</string>
+    <string name="settings_last_backup_never">Last backup: never</string>
+    <string name="settings_export_success">Backup saved</string>
+    <string name="settings_export_failure">Couldn\'t save backup</string>
+    <string name="settings_import_success">Backup restored</string>
+    <string name="settings_import_failure">Couldn\'t read that backup file</string>
+    <string name="settings_about_title">About</string>
+    <string name="settings_version_format">Version %1$s</string>
+
+    <string name="notification_channel_name">Habit reminders</string>
+    <string name="notification_title_format">Time for %1$s</string>
+    <string name="notification_text">Tap to check it off</string>
+</resources>
