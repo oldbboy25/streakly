@@ -19,6 +19,7 @@ import com.apptech.streakly.BuildConfig;
 import com.apptech.streakly.R;
 import com.apptech.streakly.backup.BackupData;
 import com.apptech.streakly.backup.BackupManager;
+import com.apptech.streakly.growth.ShareHelper;
 import com.apptech.streakly.model.Habit;
 import com.apptech.streakly.notifications.ReminderScheduler;
 import com.apptech.streakly.repository.HabitRepository;
@@ -74,6 +75,11 @@ public class SettingsFragment extends Fragment {
 
         view.findViewById(R.id.btn_import).setOnClickListener(v ->
                 importLauncher.launch(new String[]{"application/json", "text/plain", "*/*"}));
+
+        view.findViewById(R.id.btn_rate).setOnClickListener(v ->
+                ShareHelper.openPlayStoreListing(requireContext()));
+        view.findViewById(R.id.btn_share).setOnClickListener(v ->
+                ShareHelper.shareApp(requireContext()));
     }
 
     private void refreshLastBackupText() {

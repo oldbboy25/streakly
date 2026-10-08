@@ -19,7 +19,7 @@
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.Streakly">
+            android:theme="@style/Theme.Streakly.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -27,7 +27,17 @@
         </activity>
 
         <activity
+            android:name=".ui.onboarding.OnboardingActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Streakly" />
+
+        <activity
             android:name=".ui.habitdetail.HabitDetailActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.MainActivity" />
+
+        <activity
+            android:name=".ui.addedit.TemplatePickerActivity"
             android:exported="false"
             android:parentActivityName=".ui.MainActivity" />
 

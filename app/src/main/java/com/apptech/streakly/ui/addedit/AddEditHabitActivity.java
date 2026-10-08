@@ -31,6 +31,9 @@ import java.util.Locale;
 public class AddEditHabitActivity extends AppCompatActivity {
 
     public static final String EXTRA_HABIT_ID = "habit_id";
+    public static final String EXTRA_TEMPLATE_NAME = "template_name";
+    public static final String EXTRA_TEMPLATE_EMOJI = "template_emoji";
+    public static final String EXTRA_TEMPLATE_COLOR = "template_color";
 
     private static final String[] EMOJIS = {
             "💪", "🏃", "📚", "💧", "🧘",
@@ -91,6 +94,36 @@ public class AddEditHabitActivity extends AppCompatActivity {
             deleteButton.setVisibility(View.VISIBLE);
             deleteButton.setOnClickListener(v -> onDeleteClicked());
             loadExistingHabit();
+        } else {
+            applyTemplateIfPresent();
+        }
+    }
+
+    private void applyTemplateIfPresent() {
+        String templateName = getIntent().getStringExtra(EXTRA_TEMPLATE_NAME);
+        if (templateName == null) {
+            return;
+        }
+        nameInput.setText(templateName);
+
+        String templateEmoji = getIntent().getStringExtra(EXTRA_TEMPLATE_EMOJI);
+        if (templateEmoji != null) {
+            for (int i = 0; i < EMOJIS.length; i++) {
+                if (EMOJIS[i].equals(templateEmoji)) {
+                    selectEmoji(templateEmoji, emojiContainer.getChildAt(i));
+                    break;
+                }
+            }
+        }
+
+        String templateColor = getIntent().getStringExtra(EXTRA_TEMPLATE_COLOR);
+        if (templateColor != null) {
+            for (int i = 0; i < COLOR_HEXES.length; i++) {
+                if (COLOR_HEXES[i].equalsIgnoreCase(templateColor)) {
+                    selectColor(templateColor, colorContainer.getChildAt(i));
+                    break;
+                }
+            }
         }
     }
 

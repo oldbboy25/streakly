@@ -2,6 +2,7 @@ package com.apptech.streakly.ui.today;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,22 +12,37 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.apptech.streakly.R;
-import com.apptech.streakly.ui.addedit.AddEditHabitActivity;
+import com.apptech.streakly.growth.ReviewPrompter;
+import com.apptech.streakly.model.Habit;
+import com.apptech.streakly.notifications.ReminderScheduler;
+import com.apptech.streakly.repository.HabitRepository;
+import com.apptech.streakly.ui.addedit.TemplatePickerActivity;
 import com.apptech.streakly.ui.habitdetail.HabitDetailActivity;
 import com.apptech.streakly.ui.views.CircularProgressView;
+import com.apptech.streakly.ui.views.ConfettiView;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 public class TodayFragment extends Fragment {
 
+    private static final Set<Integer> CELEBRATION_MILESTONES = new HashSet<>(Arrays.asList(7, 14, 30, 100, 365));
+
     private HabitAdapter adapter;
+    private TodayViewModel viewModel;
+    private HabitRepository repository;
+    private ConfettiView confettiView;
 
     @Nullable
     @Override
@@ -39,14 +55,16 @@ public class TodayFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        TodayViewModel viewModel = new ViewModelProvider(this).get(TodayViewModel.class);
+        viewModel = new ViewModelProvider(this).get(TodayViewModel.class);
+        repository = HabitRepository.getInstance(requireContext());
+        confettiView = view.findViewById(R.id.confetti_view);
 
         RecyclerView recyclerView = view.findViewById(R.id.habit_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         adapter = new HabitAdapter(new HabitAdapter.Listener() {
             @Override
             public void onToggle(HabitUiItem item) {
-                viewModel.toggleHabit(item.habit.id);
+                performToggle(item);
             }
 
             @Override
@@ -57,6 +75,21 @@ public class TodayFragment extends Fragment {
             }
         });
         recyclerView.setAdapter(adapter);
+
+        new ItemTouchHelper(new HabitSwipeCallback(new HabitSwipeCallback.Listener() {
+            @Override
+            public void onSwipeComplete(int position) {
+                HabitUiItem item = adapter.getCurrentList().get(position);
+                performToggle(item);
+                adapter.notifyItemChanged(position);
+            }
+
+            @Override
+            public void onSwipeArchive(int position) {
+                HabitUiItem item = adapter.getCurrentList().get(position);
+                archiveHabit(item.habit);
+            }
+        })).attachToRecyclerView(recyclerView);
 
         View emptyState = view.findViewById(R.id.empty_state);
         CircularProgressView progressRing = view.findViewById(R.id.today_progress_ring);
@@ -86,6 +119,51 @@ public class TodayFragment extends Fragment {
         });
 
         view.findViewById(R.id.fab_add_habit).setOnClickListener(v ->
-                startActivity(new Intent(requireContext(), AddEditHabitActivity.class)));
+                startActivity(new Intent(requireContext(), TemplatePickerActivity.class)));
+    }
+
+    private void performToggle(HabitUiItem item) {
+        boolean wasCompleted = item.completedToday;
+        viewModel.toggleHabit(item.habit.id);
+
+        if (!wasCompleted) {
+            int newStreak = item.currentStreak + 1;
+            if (CELEBRATION_MILESTONES.contains(newStreak)) {
+                celebrate(newStreak);
+            }
+        }
+    }
+
+    private void celebrate(int streak) {
+        confettiView.burst();
+        View root = getView();
+        if (root != null) {
+            root.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            Snackbar.make(root, getString(R.string.milestone_celebration_format, streak), Snackbar.LENGTH_LONG).show();
+        }
+        if (getActivity() != null) {
+            ReviewPrompter.maybePromptAfterMilestone(getActivity(), streak);
+        }
+    }
+
+    private void archiveHabit(Habit habit) {
+        habit.archived = true;
+        ReminderScheduler.cancel(requireContext(), habit.id);
+        repository.updateHabit(habit, null);
+
+        View root = getView();
+        if (root == null) {
+            return;
+        }
+        Snackbar.make(root, R.string.archive_undo_message, Snackbar.LENGTH_LONG)
+                .setAction(R.string.action_undo, v -> {
+                    habit.archived = false;
+                    repository.updateHabit(habit, () -> {
+                        if (habit.reminderEnabled && getContext() != null) {
+                            ReminderScheduler.schedule(requireContext(), habit);
+                        }
+                    });
+                })
+                .show();
     }
 }
