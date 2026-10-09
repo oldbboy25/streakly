@@ -109,4 +109,10 @@
     <string name="exact_alarm_dialog_title">Allow precise reminders</string>
     <string name="exact_alarm_dialog_message">Android needs the \"Alarms &amp; reminders\" permission so Streakly can notify you at exactly the right time. Grant it in Settings?</string>
     <string name="exact_alarm_dialog_action">Open settings</string>
+
+    <string name="settings_language_title">Language</string>
+    <string name="settings_language_dialog_title">Choose a language</string>
+    <string name="language_name_system_default">System default</string>
+    <string name="language_name_english">English</string>
+    <string name="language_name_french">Français</string>
 </resources>

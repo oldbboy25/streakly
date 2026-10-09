@@ -1,5 +1,6 @@
 package com.apptech.streakly.ui.settings;
 
+import android.app.AlertDialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.format.DateUtils;
@@ -13,6 +14,8 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.os.LocaleListCompat;
 import androidx.fragment.app.Fragment;
 
 import com.apptech.streakly.BuildConfig;
@@ -23,6 +26,7 @@ import com.apptech.streakly.growth.ShareHelper;
 import com.apptech.streakly.model.Habit;
 import com.apptech.streakly.notifications.ReminderScheduler;
 import com.apptech.streakly.repository.HabitRepository;
+import com.google.android.material.button.MaterialButton;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -80,6 +84,53 @@ public class SettingsFragment extends Fragment {
                 ShareHelper.openPlayStoreListing(requireContext()));
         view.findViewById(R.id.btn_share).setOnClickListener(v ->
                 ShareHelper.shareApp(requireContext()));
+
+        setupLanguagePicker(view);
+    }
+
+    private void setupLanguagePicker(View view) {
+        MaterialButton languageButton = view.findViewById(R.id.btn_language);
+        languageButton.setText(currentLanguageLabel());
+        languageButton.setOnClickListener(v -> showLanguageDialog(languageButton));
+    }
+
+    private String currentLanguageLabel() {
+        LocaleListCompat current = AppCompatDelegate.getApplicationLocales();
+        if (current.isEmpty()) {
+            return getString(R.string.language_name_system_default);
+        }
+        String language = current.get(0) != null ? current.get(0).getLanguage() : "";
+        if ("fr".equals(language)) {
+            return getString(R.string.language_name_french);
+        }
+        return getString(R.string.language_name_english);
+    }
+
+    private void showLanguageDialog(MaterialButton languageButton) {
+        String[] labels = {
+                getString(R.string.language_name_system_default),
+                getString(R.string.language_name_english),
+                getString(R.string.language_name_french)
+        };
+        new AlertDialog.Builder(requireContext())
+                .setTitle(R.string.settings_language_dialog_title)
+                .setItems(labels, (dialog, which) -> {
+                    LocaleListCompat locales;
+                    switch (which) {
+                        case 1:
+                            locales = LocaleListCompat.forLanguageTags("en");
+                            break;
+                        case 2:
+                            locales = LocaleListCompat.forLanguageTags("fr");
+                            break;
+                        default:
+                            locales = LocaleListCompat.getEmptyLocaleList();
+                            break;
+                    }
+                    languageButton.setText(labels[which]);
+                    AppCompatDelegate.setApplicationLocales(locales);
+                })
+                .show();
     }
 
     private void refreshLastBackupText() {
