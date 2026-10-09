@@ -4,6 +4,9 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.Settings;
 
 import com.apptech.streakly.model.Habit;
 
@@ -13,6 +16,26 @@ public class ReminderScheduler {
 
     public static final String EXTRA_HABIT_ID = "habit_id";
     public static final String EXTRA_HABIT_NAME = "habit_name";
+
+    /** Android 12+ gates exact alarms behind a user-grantable special permission. */
+    public static boolean canScheduleExactAlarms(Context context) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+            return true;
+        }
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        return alarmManager != null && alarmManager.canScheduleExactAlarms();
+    }
+
+    /** Deep-links to the system screen where the user can grant "Alarms & reminders". */
+    public static void openExactAlarmSettings(Context context) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+            return;
+        }
+        Intent intent = new Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM,
+                Uri.parse("package:" + context.getPackageName()));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
 
     public static void schedule(Context context, Habit habit) {
         if (!habit.reminderEnabled || habit.reminderHour < 0 || habit.reminderMinute < 0) {

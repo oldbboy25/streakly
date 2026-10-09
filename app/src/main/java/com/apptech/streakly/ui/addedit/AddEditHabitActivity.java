@@ -249,11 +249,26 @@ public class AddEditHabitActivity extends AppCompatActivity {
     private void setupReminderUi() {
         reminderSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             reminderTimeButton.setVisibility(isChecked ? View.VISIBLE : View.GONE);
-            if (isChecked && reminderHour < 0) {
-                showTimePicker();
+            if (isChecked) {
+                if (reminderHour < 0) {
+                    showTimePicker();
+                }
+                if (!ReminderScheduler.canScheduleExactAlarms(this)) {
+                    promptForExactAlarmPermission();
+                }
             }
         });
         reminderTimeButton.setOnClickListener(v -> showTimePicker());
+    }
+
+    private void promptForExactAlarmPermission() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.exact_alarm_dialog_title)
+                .setMessage(R.string.exact_alarm_dialog_message)
+                .setNegativeButton(R.string.action_cancel, null)
+                .setPositiveButton(R.string.exact_alarm_dialog_action, (dialog, which) ->
+                        ReminderScheduler.openExactAlarmSettings(this))
+                .show();
     }
 
     private void showTimePicker() {

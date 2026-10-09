@@ -105,4 +105,8 @@
     <string name="share_app_text">I\'m building better habits with Streakly — a free, offline habit tracker with no ads, no account, and no subscription. Check it out: %1$s</string>
     <string name="rate_app_action">Rate Streakly</string>
     <string name="share_app_action">Share with a friend</string>
+
+    <string name="exact_alarm_dialog_title">Allow precise reminders</string>
+    <string name="exact_alarm_dialog_message">Android needs the \"Alarms &amp; reminders\" permission so Streakly can notify you at exactly the right time. Grant it in Settings?</string>
+    <string name="exact_alarm_dialog_action">Open settings</string>
 </resources>

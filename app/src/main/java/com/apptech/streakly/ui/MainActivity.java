@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.apptech.streakly.R;
+import com.apptech.streakly.notifications.ReminderScheduler;
+import com.apptech.streakly.repository.HabitRepository;
 import com.apptech.streakly.ui.achievements.AchievementsFragment;
 import com.apptech.streakly.ui.onboarding.OnboardingActivity;
 import com.apptech.streakly.ui.settings.SettingsFragment;
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         requestNotificationPermissionIfNeeded();
+        resyncReminders();
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
         if (savedInstanceState == null) {
@@ -71,6 +74,22 @@ public class MainActivity extends AppCompatActivity {
         fm.beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .commit();
+    }
+
+    /**
+     * Re-schedules every reminder-enabled habit on each app open. This is what makes a
+     * permission grant (the user coming back from "Alarms & reminders" settings) actually
+     * take effect without requiring them to re-open and re-save each habit individually.
+     */
+    private void resyncReminders() {
+        if (!ReminderScheduler.canScheduleExactAlarms(this)) {
+            return;
+        }
+        HabitRepository.getInstance(this).getHabitsWithReminders(habits -> {
+            for (var habit : habits) {
+                ReminderScheduler.schedule(this, habit);
+            }
+        });
     }
 
     private void requestNotificationPermissionIfNeeded() {
