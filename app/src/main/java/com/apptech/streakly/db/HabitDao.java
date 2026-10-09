@@ -105,4 +105,11 @@ public interface HabitDao {
         deleteCompletionsForHabit(habit.id);
         deleteHabit(habit);
     }
+
+    @Transaction
+    default void updateSortOrders(List<Habit> habitsInOrder) {
+        for (Habit habit : habitsInOrder) {
+            updateHabit(habit);
+        }
+    }
 }

@@ -157,4 +157,11 @@ public class HabitRepository {
     public boolean isCompletedSync(long habitId, long epochDay) {
         return dao.getCompletionForDay(habitId, epochDay) != null;
     }
+
+    public void updateSortOrders(List<Habit> habitsInNewOrder) {
+        for (int i = 0; i < habitsInNewOrder.size(); i++) {
+            habitsInNewOrder.get(i).sortOrder = i;
+        }
+        AppExecutors.diskIO().execute(() -> dao.updateSortOrders(habitsInNewOrder));
+    }
 }

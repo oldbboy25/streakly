@@ -9,3 +9,6 @@ local.properties
 *.apk
 *.aab
 .DS_Store
+
+# Release signing key is injected by CI from a GitHub secret, never committed.
+app/release.keystore

@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.apptech.streakly.R;
 import com.apptech.streakly.ui.views.StreakFlameView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class HabitAdapter extends ListAdapter<HabitUiItem, HabitAdapter.ViewHolder> {
@@ -47,6 +49,18 @@ public class HabitAdapter extends ListAdapter<HabitUiItem, HabitAdapter.ViewHold
     public HabitAdapter(Listener listener) {
         super(DIFF_CALLBACK);
         this.listener = listener;
+    }
+
+    /** Used only while a drag is in progress; submits a reordered copy of the current list. */
+    public void moveItem(int fromPosition, int toPosition) {
+        List<HabitUiItem> current = new ArrayList<>(getCurrentList());
+        if (fromPosition < 0 || fromPosition >= current.size()
+                || toPosition < 0 || toPosition >= current.size()) {
+            return;
+        }
+        HabitUiItem moved = current.remove(fromPosition);
+        current.add(toPosition, moved);
+        submitList(current);
     }
 
     @NonNull

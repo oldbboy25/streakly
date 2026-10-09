@@ -29,6 +29,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -88,6 +89,20 @@ public class TodayFragment extends Fragment {
             public void onSwipeArchive(int position) {
                 HabitUiItem item = adapter.getCurrentList().get(position);
                 archiveHabit(item.habit);
+            }
+
+            @Override
+            public void onMove(int fromPosition, int toPosition) {
+                adapter.moveItem(fromPosition, toPosition);
+            }
+
+            @Override
+            public void onDragFinished() {
+                List<Habit> habitsInOrder = new ArrayList<>();
+                for (HabitUiItem item : adapter.getCurrentList()) {
+                    habitsInOrder.add(item.habit);
+                }
+                repository.updateSortOrders(habitsInOrder);
             }
         })).attachToRecyclerView(recyclerView);
 
