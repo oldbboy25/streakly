@@ -1,6 +1,7 @@
 package com.apptech.streakly.ui.today;
 
 import android.content.res.Resources;
+import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -109,6 +110,7 @@ public class HabitAdapter extends ListAdapter<HabitUiItem, HabitAdapter.ViewHold
 
             checkButton.setOnClickListener(v -> {
                 animateCheck(checkButton);
+                v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
                 if (listener != null) {
                     listener.onToggle(item);
                 }

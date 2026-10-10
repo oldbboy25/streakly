@@ -75,10 +75,10 @@
 
         <ImageButton
             android:id="@+id/habit_check_button"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@drawable/bg_circle_outline"
-            android:padding="7dp"
+            android:padding="13dp"
             android:src="@drawable/ic_check"
             android:contentDescription="@string/action_save"
             android:scaleType="fitCenter" />
