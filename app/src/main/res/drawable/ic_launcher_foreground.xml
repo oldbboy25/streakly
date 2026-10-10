@@ -6,7 +6,7 @@
     android:viewportHeight="108">
     <!-- Outer ring disc: radius 32, safely inside Android's guaranteed 33dp adaptive-icon
          safe-zone radius. Confirmed by testing that the wider 37.8dp (Play Store icon's
-         proportion) DOES get visibly clipped by at least one real launcher mask -- do not
+         proportion) DOES get visibly clipped by at least one real launcher mask. Do not
          widen this again without re-testing on-device. -->
     <path
         android:fillColor="@color/md_primary_dark"
