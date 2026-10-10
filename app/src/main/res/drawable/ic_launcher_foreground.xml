@@ -9,17 +9,22 @@
          proportion) DOES get visibly clipped by at least one real launcher mask. Do not
          widen this again without re-testing on-device. -->
     <path
-        android:fillColor="@color/md_on_surface_dark"
+        android:fillColor="@color/md_on_primary"
         android:pathData="M22,54 A32,32 0 1,0 86,54 A32,32 0 1,0 22,54 Z" />
-    <!-- Inner punch-out (matches background) to turn the disc into a ring -->
+    <!-- Inner punch-out (matches background's base red) to turn the disc into a ring -->
     <path
-        android:fillColor="@color/md_background_dark"
+        android:fillColor="@color/md_primary"
         android:pathData="M30.1,54 A23.9,23.9 0 1,0 77.9,54 A23.9,23.9 0 1,0 30.1,54 Z" />
     <!-- Checkmark -->
     <path
-        android:strokeColor="@color/md_on_surface_dark"
+        android:strokeColor="@color/md_on_primary"
         android:strokeWidth="7"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
         android:pathData="M43.75,54.37 L51.76,62.39 L65.56,46.17" />
+    <!-- Glass sheen: soft translucent highlight band across the upper ring, for a glossy look -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.32"
+        android:pathData="M18,34 L90,15 L90,28 L18,46 Z" />
 </vector>
