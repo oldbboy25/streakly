@@ -37,6 +37,15 @@
     <string name="stats_best_streak_format">Meilleure série : %1$d jours</string>
     <string name="stats_last_7_days">7 derniers jours</string>
 
+    <string name="stats_range_week">Semaine</string>
+    <string name="stats_range_month">Mois</string>
+    <string name="stats_range_year">Année</string>
+    <string name="stats_range_all_time">Depuis le début</string>
+    <string name="stats_distribution_title">Répartition des statuts</string>
+    <string name="stats_completed_label">Complété : %1$d%%</string>
+    <string name="stats_missed_label">Manqué : %1$d%%</string>
+    <string name="stats_activity_title">Activité</string>
+
     <string name="settings_promise_title">Notre engagement</string>
     <string name="settings_promise_body">Pas de compte. Pas de pub. Pas d\'abonnement. Aucune limite d\'habitudes, jamais. Tout ce que vous voyez ici reste uniquement sur cet appareil — rien n\'est envoyé en ligne sauf si vous l\'exportez vous-même.</string>
     <string name="settings_backup_title">Sauvegarde &amp; restauration</string>
@@ -55,14 +64,12 @@
     <string name="notification_title_format">C\'est l\'heure pour %1$s</string>
     <string name="notification_text">Appuyez pour valider</string>
 
-    <string name="nav_achievements">Trophées</string>
-
     <string name="onboarding_1_title">Créez des habitudes qui tiennent vraiment</string>
     <string name="onboarding_1_subtitle">Suivez vos routines quotidiennes, regardez vos séries grandir, restez motivé — entièrement hors ligne.</string>
     <string name="onboarding_2_title">Vos données, votre appareil</string>
     <string name="onboarding_2_subtitle">Pas de compte. Pas de pub. Pas d\'abonnement. Rien ne quitte jamais votre téléphone sauf si vous l\'exportez vous-même.</string>
     <string name="onboarding_3_title">Voyez vos progrès prendre vie</string>
-    <string name="onboarding_3_subtitle">Séries, graphiques, trophées, et un widget d\'écran d\'accueil pour rester sur la bonne voie chaque jour.</string>
+    <string name="onboarding_3_subtitle">Séries, graphiques, et un widget d\'écran d\'accueil pour rester sur la bonne voie chaque jour.</string>
     <string name="onboarding_skip">Passer</string>
     <string name="onboarding_next">Suivant</string>
     <string name="onboarding_get_started">Commencer</string>
@@ -74,33 +81,10 @@
     <string name="template_category_productivity">Productivité</string>
     <string name="template_category_money">Argent</string>
 
-    <string name="achievements_title">Trophées</string>
-    <string name="achievements_subtitle_format">%1$d sur %2$d débloqués</string>
-    <string name="achievement_unlocked_toast">Trophée débloqué : %1$s</string>
-
     <string name="milestone_celebration_format">🔥 %1$d jours de suite !</string>
 
     <string name="archive_undo_message">Habitude archivée</string>
     <string name="action_undo">Annuler</string>
-
-    <string name="achievement_first_habit_title">Premiers pas</string>
-    <string name="achievement_first_habit_desc">Créez votre première habitude</string>
-    <string name="achievement_first_checkin_title">Première étape</string>
-    <string name="achievement_first_checkin_desc">Validez une habitude pour la première fois</string>
-    <string name="achievement_streak_7_title">Guerrier de la semaine</string>
-    <string name="achievement_streak_7_desc">Atteignez une série de 7 jours</string>
-    <string name="achievement_streak_30_title">Maître du mois</string>
-    <string name="achievement_streak_30_desc">Atteignez une série de 30 jours</string>
-    <string name="achievement_streak_100_title">Club des 100</string>
-    <string name="achievement_streak_100_desc">Atteignez une série de 100 jours</string>
-    <string name="achievement_collector_title">Collectionneur</string>
-    <string name="achievement_collector_desc">Suivez 5 habitudes à la fois</string>
-    <string name="achievement_perfect_day_title">Journée parfaite</string>
-    <string name="achievement_perfect_day_desc">Complétez toutes vos habitudes en une seule journée</string>
-    <string name="achievement_consistent_title">Assidu</string>
-    <string name="achievement_consistent_desc">Enregistrez 50 validations au total</string>
-    <string name="achievement_dedicated_title">Déterminé</string>
-    <string name="achievement_dedicated_desc">Enregistrez 200 validations au total</string>
 
     <string name="share_app_text">Je construis de meilleures habitudes avec Streakly — un suivi d\'habitudes gratuit et hors ligne, sans pub, sans compte et sans abonnement. Jetez un œil : %1$s</string>
     <string name="rate_app_action">Noter Streakly</string>

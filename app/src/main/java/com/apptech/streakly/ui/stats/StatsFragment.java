@@ -1,5 +1,6 @@
 package com.apptech.streakly.ui.stats;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,15 +10,19 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.apptech.streakly.R;
+import com.apptech.streakly.ui.views.DonutChartView;
 import com.apptech.streakly.ui.views.SimpleBarChartView;
+import com.google.android.material.chip.ChipGroup;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class StatsFragment extends Fragment {
@@ -39,17 +44,50 @@ public class StatsFragment extends Fragment {
         TextView totalCompletionsText = view.findViewById(R.id.stats_total_completions);
         TextView bestStreakText = view.findViewById(R.id.stats_best_streak);
         SimpleBarChartView chart = view.findViewById(R.id.stats_chart);
+        DonutChartView donut = view.findViewById(R.id.stats_donut);
+        TextView legendCompleted = view.findViewById(R.id.legend_text_completed);
+        TextView legendMissed = view.findViewById(R.id.legend_text_missed);
         RecyclerView recyclerView = view.findViewById(R.id.stats_habit_recycler);
+        ChipGroup rangeChipGroup = view.findViewById(R.id.stats_range_chip_group);
+
+        int completedColor = ContextCompat.getColor(requireContext(), R.color.swatch_green);
+        int missedColor = ContextCompat.getColor(requireContext(), R.color.md_primary);
+        view.findViewById(R.id.legend_dot_completed).setBackgroundTintList(ColorStateList.valueOf(completedColor));
+        view.findViewById(R.id.legend_dot_missed).setBackgroundTintList(ColorStateList.valueOf(missedColor));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         HabitStatAdapter adapter = new HabitStatAdapter();
         recyclerView.setAdapter(adapter);
 
+        rangeChipGroup.setOnCheckedStateChangeListener((group, checkedIds) -> {
+            if (checkedIds.isEmpty()) {
+                return;
+            }
+            int id = checkedIds.get(0);
+            if (id == R.id.chip_range_week) {
+                viewModel.setRange(StatsViewModel.Range.WEEK);
+            } else if (id == R.id.chip_range_month) {
+                viewModel.setRange(StatsViewModel.Range.MONTH);
+            } else if (id == R.id.chip_range_year) {
+                viewModel.setRange(StatsViewModel.Range.YEAR);
+            } else if (id == R.id.chip_range_all_time) {
+                viewModel.setRange(StatsViewModel.Range.ALL_TIME);
+            }
+        });
+
         viewModel.getOverview().observe(getViewLifecycleOwner(), overview -> {
             totalHabitsText.setText(getString(R.string.stats_total_habits_format, overview.totalHabits));
             totalCompletionsText.setText(getString(R.string.stats_total_completions_format, overview.totalCompletions));
             bestStreakText.setText(getString(R.string.stats_best_streak_format, overview.bestStreak));
-            chart.setValues(overview.last7Days, overview.last7DayLabels);
+
+            chart.setValues(overview.chartValues, overview.chartLabels);
+
+            donut.setSegments(
+                    Arrays.asList(overview.distributionCompleted, overview.distributionMissed),
+                    Arrays.asList(completedColor, missedColor));
+            legendCompleted.setText(getString(R.string.stats_completed_label, Math.round(overview.distributionCompleted * 100)));
+            legendMissed.setText(getString(R.string.stats_missed_label, Math.round(overview.distributionMissed * 100)));
+
             adapter.submitRows(overview.habitRows);
         });
     }

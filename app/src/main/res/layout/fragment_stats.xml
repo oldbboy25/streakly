@@ -9,13 +9,52 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="20dp"
+        android:paddingBottom="96dp">
 
         <TextView
             style="?attr/textAppearanceHeadlineSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/nav_stats" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/stats_range_chip_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:singleSelection="true"
+            app:selectionRequired="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_range_week"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/stats_range_week" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_range_month"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stats_range_month" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_range_year"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stats_range_year" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_range_all_time"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stats_range_all_time" />
+        </com.google.android.material.chip.ChipGroup>
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -56,12 +95,97 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="?attr/colorSurfaceContainer">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    style="?attr/textAppearanceTitleMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stats_distribution_title" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="12dp">
+
+                    <com.apptech.streakly.ui.views.DonutChartView
+                        android:id="@+id/stats_donut"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="20dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <View
+                                android:id="@+id/legend_dot_completed"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:background="@drawable/bg_oval_solid" />
+
+                            <TextView
+                                android:id="@+id/legend_text_completed"
+                                style="?attr/textAppearanceBodyMedium"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="8dp">
+
+                            <View
+                                android:id="@+id/legend_dot_missed"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:background="@drawable/bg_oval_solid" />
+
+                            <TextView
+                                android:id="@+id/legend_text_missed"
+                                style="?attr/textAppearanceBodyMedium"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
         <TextView
+            android:id="@+id/stats_activity_title"
             style="?attr/textAppearanceTitleMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="@string/stats_last_7_days" />
+            android:text="@string/stats_activity_title" />
 
         <com.apptech.streakly.ui.views.SimpleBarChartView
             android:id="@+id/stats_chart"

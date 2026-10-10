@@ -37,6 +37,15 @@
     <string name="stats_best_streak_format">Best streak: %1$d days</string>
     <string name="stats_last_7_days">Last 7 days</string>
 
+    <string name="stats_range_week">Week</string>
+    <string name="stats_range_month">Month</string>
+    <string name="stats_range_year">Year</string>
+    <string name="stats_range_all_time">All time</string>
+    <string name="stats_distribution_title">Status Distribution</string>
+    <string name="stats_completed_label">Completed: %1$d%%</string>
+    <string name="stats_missed_label">Missed: %1$d%%</string>
+    <string name="stats_activity_title">Activity</string>
+
     <string name="settings_promise_title">Our promise</string>
     <string name="settings_promise_body">No account. No ads. No subscription. No habit limit, ever. Everything you see here lives only on this device — nothing is uploaded unless you export it yourself.</string>
     <string name="settings_backup_title">Backup &amp; restore</string>
@@ -55,14 +64,12 @@
     <string name="notification_title_format">Time for %1$s</string>
     <string name="notification_text">Tap to check it off</string>
 
-    <string name="nav_achievements">Awards</string>
-
     <string name="onboarding_1_title">Build habits that actually stick</string>
     <string name="onboarding_1_subtitle">Track daily routines, see your streaks grow, and stay motivated — completely offline.</string>
     <string name="onboarding_2_title">Your data, your device</string>
     <string name="onboarding_2_subtitle">No account. No ads. No subscription. Nothing ever leaves your phone unless you export it yourself.</string>
     <string name="onboarding_3_title">Watch your progress come alive</string>
-    <string name="onboarding_3_subtitle">Streaks, charts, awards, and a home-screen widget to keep you on track every day.</string>
+    <string name="onboarding_3_subtitle">Streaks, charts, and a home-screen widget to keep you on track every day.</string>
     <string name="onboarding_skip">Skip</string>
     <string name="onboarding_next">Next</string>
     <string name="onboarding_get_started">Get started</string>
@@ -74,33 +81,10 @@
     <string name="template_category_productivity">Productivity</string>
     <string name="template_category_money">Money</string>
 
-    <string name="achievements_title">Awards</string>
-    <string name="achievements_subtitle_format">%1$d of %2$d unlocked</string>
-    <string name="achievement_unlocked_toast">Award unlocked: %1$s</string>
-
     <string name="milestone_celebration_format">🔥 %1$d day streak!</string>
 
     <string name="archive_undo_message">Habit archived</string>
     <string name="action_undo">Undo</string>
-
-    <string name="achievement_first_habit_title">Getting started</string>
-    <string name="achievement_first_habit_desc">Create your first habit</string>
-    <string name="achievement_first_checkin_title">First step</string>
-    <string name="achievement_first_checkin_desc">Check off a habit for the first time</string>
-    <string name="achievement_streak_7_title">Week warrior</string>
-    <string name="achievement_streak_7_desc">Reach a 7-day streak</string>
-    <string name="achievement_streak_30_title">Monthly master</string>
-    <string name="achievement_streak_30_desc">Reach a 30-day streak</string>
-    <string name="achievement_streak_100_title">Century club</string>
-    <string name="achievement_streak_100_desc">Reach a 100-day streak</string>
-    <string name="achievement_collector_title">Collector</string>
-    <string name="achievement_collector_desc">Track 5 habits at once</string>
-    <string name="achievement_perfect_day_title">Perfect day</string>
-    <string name="achievement_perfect_day_desc">Complete every habit in a single day</string>
-    <string name="achievement_consistent_title">Consistent</string>
-    <string name="achievement_consistent_desc">Log 50 check-ins total</string>
-    <string name="achievement_dedicated_title">Dedicated</string>
-    <string name="achievement_dedicated_desc">Log 200 check-ins total</string>
 
     <string name="share_app_text">I\'m building better habits with Streakly — a free, offline habit tracker with no ads, no account, and no subscription. Check it out: %1$s</string>
     <string name="rate_app_action">Rate Streakly</string>

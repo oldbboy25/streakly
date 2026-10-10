@@ -21,7 +21,6 @@ import com.apptech.streakly.growth.ReviewPrompter;
 import com.apptech.streakly.model.Habit;
 import com.apptech.streakly.notifications.ReminderScheduler;
 import com.apptech.streakly.repository.HabitRepository;
-import com.apptech.streakly.ui.addedit.TemplatePickerActivity;
 import com.apptech.streakly.ui.habitdetail.HabitDetailActivity;
 import com.apptech.streakly.ui.views.CircularProgressView;
 import com.apptech.streakly.ui.views.ConfettiView;
@@ -132,9 +131,6 @@ public class TodayFragment extends Fragment {
             progressRing.setProgress(fraction);
             completionText.setText(getString(R.string.today_completion_format, Math.round(fraction * 100)));
         });
-
-        view.findViewById(R.id.fab_add_habit).setOnClickListener(v ->
-                startActivity(new Intent(requireContext(), TemplatePickerActivity.class)));
     }
 
     private void performToggle(HabitUiItem item) {
