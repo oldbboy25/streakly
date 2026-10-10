@@ -25,9 +25,16 @@
     <color name="md_background_dark">#1E1E24</color>
     <color name="md_surface_dark">#1E1E24</color>
     <color name="md_surface_container_dark">#2A2A32</color>
+    <color name="md_surface_variant_dark">#3A3840</color>
     <color name="md_on_surface_dark">#FFF8F0</color>
+    <color name="md_on_surface_variant_dark">#C9C6C2</color>
+    <color name="md_outline_dark">#7A7680</color>
     <color name="md_primary_dark">#E0503F</color>
     <color name="md_on_primary_dark">#FFF8F0</color>
+    <color name="md_primary_container_dark">#5A1F18</color>
+    <color name="md_on_primary_container_dark">#FFD9D0</color>
+    <color name="md_secondary_dark">#C9C6C2</color>
+    <color name="md_secondary_container_dark">#35343A</color>
 
     <!-- Bottom nav is deliberately a fixed dark bar (matches the app icon/splash) in
          both light and dark app theme, for a consistent high-contrast brand anchor. -->

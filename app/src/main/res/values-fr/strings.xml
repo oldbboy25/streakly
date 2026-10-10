@@ -99,4 +99,10 @@
     <string name="language_name_system_default">Langue du système</string>
     <string name="language_name_english">English</string>
     <string name="language_name_french">Français</string>
+
+    <string name="settings_theme_title">Thème</string>
+    <string name="settings_theme_dialog_title">Choisir un thème</string>
+    <string name="theme_name_system_default">Thème du système</string>
+    <string name="theme_name_light">Clair</string>
+    <string name="theme_name_dark">Sombre</string>
 </resources>

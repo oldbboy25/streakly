@@ -86,6 +86,51 @@ public class SettingsFragment extends Fragment {
                 ShareHelper.shareApp(requireContext()));
 
         setupLanguagePicker(view);
+        setupThemePicker(view);
+    }
+
+    private void setupThemePicker(View view) {
+        MaterialButton themeButton = view.findViewById(R.id.btn_theme);
+        themeButton.setText(currentThemeLabel());
+        themeButton.setOnClickListener(v -> showThemeDialog(themeButton));
+    }
+
+    private String currentThemeLabel() {
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_NO:
+                return getString(R.string.theme_name_light);
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                return getString(R.string.theme_name_dark);
+            default:
+                return getString(R.string.theme_name_system_default);
+        }
+    }
+
+    private void showThemeDialog(MaterialButton themeButton) {
+        String[] labels = {
+                getString(R.string.theme_name_system_default),
+                getString(R.string.theme_name_light),
+                getString(R.string.theme_name_dark)
+        };
+        new AlertDialog.Builder(requireContext())
+                .setTitle(R.string.settings_theme_dialog_title)
+                .setItems(labels, (dialog, which) -> {
+                    int mode;
+                    switch (which) {
+                        case 1:
+                            mode = AppCompatDelegate.MODE_NIGHT_NO;
+                            break;
+                        case 2:
+                            mode = AppCompatDelegate.MODE_NIGHT_YES;
+                            break;
+                        default:
+                            mode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
+                            break;
+                    }
+                    themeButton.setText(labels[which]);
+                    AppCompatDelegate.setDefaultNightMode(mode);
+                })
+                .show();
     }
 
     private void setupLanguagePicker(View view) {
