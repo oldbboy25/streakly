@@ -20,12 +20,10 @@ import androidx.fragment.app.FragmentManager;
 import com.apptech.streakly.R;
 import com.apptech.streakly.notifications.ReminderScheduler;
 import com.apptech.streakly.repository.HabitRepository;
-import com.apptech.streakly.ui.addedit.TemplatePickerActivity;
 import com.apptech.streakly.ui.onboarding.OnboardingActivity;
 import com.apptech.streakly.ui.settings.SettingsFragment;
 import com.apptech.streakly.ui.stats.StatsFragment;
 import com.apptech.streakly.ui.today.TodayFragment;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -59,12 +57,10 @@ public class MainActivity extends AppCompatActivity {
         navToday = findViewById(R.id.nav_today);
         navStats = findViewById(R.id.nav_stats);
         navSettings = findViewById(R.id.nav_settings);
-        FloatingActionButton fab = findViewById(R.id.fab_add_habit);
 
         navToday.setOnClickListener(v -> selectTab(Tab.TODAY));
         navStats.setOnClickListener(v -> selectTab(Tab.STATS));
         navSettings.setOnClickListener(v -> selectTab(Tab.SETTINGS));
-        fab.setOnClickListener(v -> startActivity(new Intent(this, TemplatePickerActivity.class)));
 
         if (savedInstanceState == null) {
             showFragment(new TodayFragment());
