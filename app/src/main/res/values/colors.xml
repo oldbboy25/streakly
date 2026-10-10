@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Brand palette: Shadow Grey #1E1E24, Blood Red #92140C, Floral White #FFF8F0.
-         Red is reserved for accents on LIGHT surfaces only -- its contrast against the
-         dark grey is too low to use directly on it (checked: ~1.4:1), so dark surfaces
-         pair with Floral White foregrounds instead, and red stays an on-light accent. -->
+         Red is reserved for accents on LIGHT surfaces only, since its contrast against
+         the dark grey is too low to use directly on it (checked: ~1.4:1), so dark
+         surfaces pair with Floral White foregrounds instead, and red stays an accent
+         used only on light backgrounds. -->
     <color name="md_primary">#92140C</color>
     <color name="md_on_primary">#FFF8F0</color>
     <color name="md_primary_container">#F0D7D0</color>
@@ -45,7 +46,7 @@
 
     <!-- Habit color swatches: kept as a varied multi-color picker (independent of the
          app's own 3-color brand) so users can still visually tell their own habits
-         apart -- recoloring these to only grey/red/white would remove that. -->
+         apart. Recoloring these to only grey/red/white would remove that. -->
     <color name="swatch_green">#13874F</color>
     <color name="swatch_blue">#1E6FA8</color>
     <color name="swatch_purple">#7B4FB0</color>
