@@ -23,41 +23,29 @@
             android:layout_marginTop="16dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
-            app:strokeWidth="1dp"
-            app:strokeColor="@color/glass_border_stroke"
             app:cardBackgroundColor="?attr/colorPrimaryContainer">
 
-            <FrameLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/glass_sheen_overlay" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    style="?attr/textAppearanceTitleMedium"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="18dp">
+                    android:text="@string/settings_promise_title" />
 
-                    <TextView
-                        style="?attr/textAppearanceTitleMedium"
-                        android:textColor="?attr/colorOnPrimaryContainer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/settings_promise_title" />
-
-                    <TextView
-                        style="?attr/textAppearanceBodyMedium"
-                        android:textColor="?attr/colorOnPrimaryContainer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/settings_promise_body" />
-                </LinearLayout>
-            </FrameLayout>
+                <TextView
+                    style="?attr/textAppearanceBodyMedium"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/settings_promise_body" />
+            </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.button.MaterialButton

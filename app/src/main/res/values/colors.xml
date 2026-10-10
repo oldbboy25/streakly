@@ -51,11 +51,6 @@
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
 
-    <!-- Glass-card finish: a delicate translucent edge stroke, used the same way on
-         every card regardless of light/dark theme or the card's own fill color. A
-         soft white rim reads as a glass edge highlight against either. -->
-    <color name="glass_border_stroke">#40FFFFFF</color>
-
     <!-- Habit color swatches: kept as a varied multi-color picker (independent of the
          app's own 3-color brand) so users can still visually tell their own habits
          apart. Recoloring these to only grey/red/white would remove that. -->
