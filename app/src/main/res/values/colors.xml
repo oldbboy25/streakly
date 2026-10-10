@@ -36,11 +36,11 @@
     <color name="md_secondary_dark">#C9C6C2</color>
     <color name="md_secondary_container_dark">#35343A</color>
 
-    <!-- Bottom nav is deliberately a fixed dark bar (matches the app icon/splash) in
-         both light and dark app theme, for a consistent high-contrast brand anchor. -->
-    <color name="bottom_nav_background">#1E1E24</color>
-    <color name="bottom_nav_icon_selected">#FFF8F0</color>
-    <color name="bottom_nav_icon_unselected">#78737E</color>
+    <!-- Bottom nav is a light bar matching the rest of the app's surfaces (was a dark
+         bar matching the icon/splash; user found that too dark). -->
+    <color name="bottom_nav_background">#F2ECE8</color>
+    <color name="bottom_nav_icon_selected">#92140C</color>
+    <color name="bottom_nav_icon_unselected">#8A827A</color>
 
     <color name="flame_active">#92140C</color>
     <color name="flame_inactive">#C9C4BE</color>
