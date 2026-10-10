@@ -4,20 +4,19 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
+    <!-- Outer ring disc -->
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M54,20
-            C70,36 78,50 75,64
-            C72,80 63,90 54,90
-            C45,90 36,80 33,64
-            C30,50 38,36 54,20
-            Z" />
+        android:pathData="M22,54 A32,32 0 1,0 86,54 A32,32 0 1,0 22,54 Z" />
+    <!-- Inner punch-out (same as background) to turn the disc into a ring -->
     <path
         android:fillColor="@color/md_primary"
-        android:pathData="M54,46
-            C61,55 64,62 62,70
-            C60,77 57,80 54,80
-            C51,80 48,77 46,70
-            C44,62 47,55 54,46
-            Z" />
+        android:pathData="M30.1,54 A23.9,23.9 0 1,0 77.9,54 A23.9,23.9 0 1,0 30.1,54 Z" />
+    <!-- Checkmark -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="7"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M43.75,54.37 L51.76,62.39 L65.56,46.17" />
 </vector>
