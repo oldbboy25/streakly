@@ -17,18 +17,21 @@
     <color name="md_on_surface_variant">#3A4A42</color>
     <color name="md_outline">#6B7A71</color>
 
-    <color name="md_background_dark">#0C1712</color>
-    <color name="md_surface_dark">#0C1712</color>
-    <color name="md_surface_container_dark">#16241C</color>
+    <!-- A deliberately deep, clearly GREEN-hued dark tone (not neutral charcoal/black) --
+         used for the app icon, splash, bottom nav, and dark-mode surfaces, so the "dark"
+         parts of the brand still read as an extension of the green palette. -->
+    <color name="md_background_dark">#123D28</color>
+    <color name="md_surface_dark">#123D28</color>
+    <color name="md_surface_container_dark">#1C4F35</color>
     <color name="md_on_surface_dark">#DCE8E0</color>
     <color name="md_primary_dark">#7BE3AA</color>
     <color name="md_on_primary_dark">#00391D</color>
 
     <!-- Bottom nav is deliberately a fixed dark bar (matches the app icon/splash) in
          both light and dark app theme, for a consistent high-contrast brand anchor. -->
-    <color name="bottom_nav_background">#0C1712</color>
+    <color name="bottom_nav_background">#123D28</color>
     <color name="bottom_nav_icon_selected">#7BE3AA</color>
-    <color name="bottom_nav_icon_unselected">#7E9389</color>
+    <color name="bottom_nav_icon_unselected">#86AF97</color>
 
     <color name="flame_active">#FF7A2E</color>
     <color name="flame_inactive">#C3CEC6</color>

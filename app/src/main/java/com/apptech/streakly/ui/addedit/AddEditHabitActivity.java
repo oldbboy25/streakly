@@ -166,7 +166,7 @@ public class AddEditHabitActivity extends AppCompatActivity {
 
             TextView text = new TextView(this);
             text.setText(emoji);
-            text.setTextSize(20);
+            text.setTextSize(15);
             FrameLayout.LayoutParams textParams = new FrameLayout.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             textParams.gravity = Gravity.CENTER;
