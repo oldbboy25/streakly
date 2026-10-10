@@ -4,23 +4,22 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
-    <!-- Outer ring disc: radius 37.8 = 15% margin each side of the 108dp canvas,
-         matching the Play Store icon's proportions. Slightly beyond Android's
-         guaranteed 33dp adaptive-icon safe radius, but since the mark itself is a
-         circle (not a square touching corners) the practical clipping risk on real
-         launchers is minimal. -->
+    <!-- Outer ring disc: radius 32, safely inside Android's guaranteed 33dp adaptive-icon
+         safe-zone radius. Confirmed by testing that the wider 37.8dp (Play Store icon's
+         proportion) DOES get visibly clipped by at least one real launcher mask -- do not
+         widen this again without re-testing on-device. -->
     <path
         android:fillColor="@color/md_primary_dark"
-        android:pathData="M16.2,54 A37.8,37.8 0 1,0 91.8,54 A37.8,37.8 0 1,0 16.2,54 Z" />
+        android:pathData="M22,54 A32,32 0 1,0 86,54 A32,32 0 1,0 22,54 Z" />
     <!-- Inner punch-out (matches background) to turn the disc into a ring -->
     <path
         android:fillColor="@color/md_background_dark"
-        android:pathData="M25.3,54 A28.7,28.7 0 1,0 82.7,54 A28.7,28.7 0 1,0 25.3,54 Z" />
+        android:pathData="M30.1,54 A23.9,23.9 0 1,0 77.9,54 A23.9,23.9 0 1,0 30.1,54 Z" />
     <!-- Checkmark -->
     <path
         android:strokeColor="@color/md_primary_dark"
-        android:strokeWidth="8.2"
+        android:strokeWidth="7"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
-        android:pathData="M41.68,54.45 L51.31,64.08 L67.89,44.59" />
+        android:pathData="M43.75,54.37 L51.76,62.39 L65.56,46.17" />
 </vector>
