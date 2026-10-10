@@ -20,7 +20,7 @@
         android:background="@color/bottom_nav_background"
         app:itemIconTint="@color/bottom_nav_item_tint"
         app:itemTextColor="@color/bottom_nav_item_tint"
-        app:itemActiveIndicatorColor="@android:color/transparent"
+        app:itemActiveIndicatorStyle="@style/Streakly.BottomNav.ActiveIndicator"
         app:itemRippleColor="@android:color/transparent"
         app:menu="@menu/bottom_nav_menu"
         app:layout_constraintStart_toStartOf="parent"
