@@ -13,6 +13,7 @@
         android:layout_height="28dp"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_check"
+        android:tint="#6C4FEB"
         android:contentDescription="@string/action_save" />
 
     <TextView
@@ -21,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_marginStart="8dp"
-        android:textColor="#1A1C18"
+        android:textColor="#1C1B29"
         android:textSize="13sp"
         android:maxLines="1"
         android:ellipsize="end" />

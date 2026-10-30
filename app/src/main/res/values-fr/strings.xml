@@ -3,18 +3,25 @@
     <string name="app_name">Streakly</string>
     <string name="widget_label">Streakly Aujourd\'hui</string>
 
-    <string name="nav_today">Aujourd\'hui</string>
+    <string name="nav_today">Accueil</string>
     <string name="nav_stats">Stats</string>
+    <string name="nav_calendar">Calendrier</string>
     <string name="nav_settings">Réglages</string>
 
     <string name="today_title">Aujourd\'hui</string>
+    <string name="today_greeting">Bon retour 👋</string>
+    <string name="today_greeting_subtitle">Continuez, vous êtes sur une lancée !</string>
     <string name="today_empty_title">Aucune habitude pour l\'instant</string>
     <string name="today_empty_subtitle">Appuyez sur + pour ajouter votre première habitude</string>
     <string name="today_completion_format">%1$d%% complété aujourd\'hui</string>
+    <string name="today_your_habits">Vos habitudes</string>
+    <string name="action_view_streaks">Voir les séries →</string>
 
     <string name="add_habit_title">Nouvelle habitude</string>
     <string name="edit_habit_title">Modifier l\'habitude</string>
     <string name="habit_name_hint">Nom de l\'habitude</string>
+    <string name="icon_label">Icône</string>
+    <string name="color_label">Couleur</string>
     <string name="frequency_label">Répétition</string>
     <string name="frequency_daily">Tous les jours</string>
     <string name="frequency_specific_days">Jours spécifiques</string>
@@ -36,6 +43,7 @@
     <string name="stats_total_completions_format">%1$d validations au total</string>
     <string name="stats_best_streak_format">Meilleure série : %1$d jours</string>
     <string name="stats_last_7_days">7 derniers jours</string>
+    <string name="stats_last_30_days">30 derniers jours</string>
 
     <string name="stats_range_week">Semaine</string>
     <string name="stats_range_month">Mois</string>
@@ -105,4 +113,30 @@
     <string name="theme_name_system_default">Thème du système</string>
     <string name="theme_name_light">Clair</string>
     <string name="theme_name_dark">Sombre</string>
+
+    <string name="settings_profile_name">Mon profil</string>
+    <string name="settings_profile_subtitle">Conservé uniquement sur cet appareil</string>
+    <string name="settings_photo_update_failure">Impossible de mettre à jour la photo</string>
+
+    <string name="calendar_title">Calendrier</string>
+    <string name="calendar_habits_for_day">Habitudes de ce jour</string>
+    <string name="calendar_count_format">%1$d / %2$d</string>
+    <string name="calendar_no_habits_for_day">Aucune habitude prévue ce jour</string>
+    <string name="calendar_done_label">Fait</string>
+
+    <string name="streaks_title">Séries &amp; récompenses</string>
+    <string name="streaks_current_streak_label">Série actuelle</string>
+    <string name="streaks_best_streak_label">Meilleure série</string>
+    <string name="streaks_days_format">%1$d jours</string>
+    <string name="streaks_achievements_title">Succès</string>
+    <string name="streaks_motivation">Vous êtes formidable ! Continuez à construire de meilleures habitudes.</string>
+    <string name="achievement_7_days">7 jours</string>
+    <string name="achievement_30_days">30 jours</string>
+    <string name="achievement_100_days">100 jours</string>
+    <string name="achievement_1_year">1 an</string>
+
+    <string name="stats_success_rate_title">Taux de réussite</string>
+    <string name="stats_overview_card_title">Aperçu des habitudes</string>
+    <string name="stats_overview_insight_format">Vous complétez %1$d%% de vos habitudes — continuez ainsi !</string>
+    <string name="stats_great_job">Bravo !</string>
 </resources>

@@ -7,10 +7,18 @@ import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.signature.ObjectKey;
+
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,16 +36,23 @@ import com.apptech.streakly.notifications.ReminderScheduler;
 import com.apptech.streakly.repository.HabitRepository;
 import com.google.android.material.button.MaterialButton;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 public class SettingsFragment extends Fragment {
 
+    private static final String PROFILE_PHOTO_FILE_NAME = "profile_photo.jpg";
+
     private final BackupManager backupManager = new BackupManager();
     private HabitRepository repository;
     private TextView lastBackupText;
+    private ImageView avatarView;
 
     private final ActivityResultLauncher<String> exportLauncher =
             registerForActivityResult(new ActivityResultContracts.CreateDocument("application/json"), uri -> {
@@ -50,6 +65,13 @@ public class SettingsFragment extends Fragment {
             registerForActivityResult(new ActivityResultContracts.OpenDocument(), uri -> {
                 if (uri != null) {
                     performImport(uri);
+                }
+            });
+
+    private final ActivityResultLauncher<PickVisualMediaRequest> photoPickerLauncher =
+            registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
+                if (uri != null) {
+                    saveProfilePhoto(uri);
                 }
             });
 
@@ -67,6 +89,13 @@ public class SettingsFragment extends Fragment {
 
         lastBackupText = view.findViewById(R.id.last_backup_text);
         refreshLastBackupText();
+
+        avatarView = view.findViewById(R.id.settings_avatar);
+        loadAvatar();
+        avatarView.setOnClickListener(v -> photoPickerLauncher.launch(
+                new PickVisualMediaRequest.Builder()
+                        .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
+                        .build()));
 
         TextView versionText = view.findViewById(R.id.about_version_text);
         versionText.setText(getString(R.string.settings_version_format, BuildConfig.VERSION_NAME));
@@ -176,6 +205,44 @@ public class SettingsFragment extends Fragment {
                     AppCompatDelegate.setApplicationLocales(locales);
                 })
                 .show();
+    }
+
+    private void loadAvatar() {
+        File photoFile = new File(requireContext().getFilesDir(), PROFILE_PHOTO_FILE_NAME);
+        RequestOptions options = RequestOptions.circleCropTransform()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .placeholder(R.drawable.ic_person)
+                .error(R.drawable.ic_person);
+
+        Glide.with(this)
+                .load(photoFile.exists() ? photoFile : null)
+                .apply(options)
+                .signature(new ObjectKey(photoFile.exists() ? photoFile.lastModified() : 0L))
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(avatarView);
+    }
+
+    /** Copies the picked photo into app-private storage so it survives app restarts without
+     * needing a persistable URI grant from the system photo picker (which is session-scoped). */
+    private void saveProfilePhoto(Uri sourceUri) {
+        repository.runOnBackground(() -> {
+            File destFile = new File(requireContext().getFilesDir(), PROFILE_PHOTO_FILE_NAME);
+            try (InputStream in = requireContext().getContentResolver().openInputStream(sourceUri);
+                 OutputStream out = new FileOutputStream(destFile)) {
+                if (in == null) {
+                    throw new IOException("Could not open picked image");
+                }
+                byte[] buffer = new byte[8192];
+                int read;
+                while ((read = in.read(buffer)) != -1) {
+                    out.write(buffer, 0, read);
+                }
+                postToUi(this::loadAvatar);
+            } catch (IOException e) {
+                postToUi(() -> toast(R.string.settings_photo_update_failure));
+            }
+        });
     }
 
     private void refreshLastBackupText() {

@@ -3,18 +3,25 @@
     <string name="app_name">Streakly</string>
     <string name="widget_label">Streakly Today</string>
 
-    <string name="nav_today">Today</string>
+    <string name="nav_today">Home</string>
     <string name="nav_stats">Stats</string>
+    <string name="nav_calendar">Calendar</string>
     <string name="nav_settings">Settings</string>
 
     <string name="today_title">Today</string>
+    <string name="today_greeting">Welcome back 👋</string>
+    <string name="today_greeting_subtitle">Keep going, you\'re on a roll!</string>
     <string name="today_empty_title">No habits yet</string>
     <string name="today_empty_subtitle">Tap + to add your first habit</string>
     <string name="today_completion_format">%1$d%% done today</string>
+    <string name="today_your_habits">Your Habits</string>
+    <string name="action_view_streaks">View streaks →</string>
 
     <string name="add_habit_title">New Habit</string>
     <string name="edit_habit_title">Edit Habit</string>
     <string name="habit_name_hint">Habit name</string>
+    <string name="icon_label">Icon</string>
+    <string name="color_label">Color</string>
     <string name="frequency_label">Repeat</string>
     <string name="frequency_daily">Daily</string>
     <string name="frequency_specific_days">Specific days</string>
@@ -36,6 +43,7 @@
     <string name="stats_total_completions_format">%1$d check-ins all time</string>
     <string name="stats_best_streak_format">Best streak: %1$d days</string>
     <string name="stats_last_7_days">Last 7 days</string>
+    <string name="stats_last_30_days">Last 30 Days</string>
 
     <string name="stats_range_week">Week</string>
     <string name="stats_range_month">Month</string>
@@ -105,4 +113,30 @@
     <string name="theme_name_system_default">System default</string>
     <string name="theme_name_light">Light</string>
     <string name="theme_name_dark">Dark</string>
+
+    <string name="settings_profile_name">My Profile</string>
+    <string name="settings_profile_subtitle">Stored only on this device</string>
+    <string name="settings_photo_update_failure">Couldn\'t update your photo</string>
+
+    <string name="calendar_title">Calendar</string>
+    <string name="calendar_habits_for_day">Habits for this day</string>
+    <string name="calendar_count_format">%1$d / %2$d</string>
+    <string name="calendar_no_habits_for_day">No habits scheduled this day</string>
+    <string name="calendar_done_label">Done</string>
+
+    <string name="streaks_title">Streaks &amp; Awards</string>
+    <string name="streaks_current_streak_label">Current Streak</string>
+    <string name="streaks_best_streak_label">Best Streak</string>
+    <string name="streaks_days_format">%1$d Days</string>
+    <string name="streaks_achievements_title">Achievements</string>
+    <string name="streaks_motivation">You\'re amazing! Keep building better habits.</string>
+    <string name="achievement_7_days">7 Days</string>
+    <string name="achievement_30_days">30 Days</string>
+    <string name="achievement_100_days">100 Days</string>
+    <string name="achievement_1_year">1 Year</string>
+
+    <string name="stats_success_rate_title">Habit Success Rate</string>
+    <string name="stats_overview_card_title">Habits Overview</string>
+    <string name="stats_overview_insight_format">You\'re completing %1$d%% of your habits — keep it up!</string>
+    <string name="stats_great_job">Great job!</string>
 </resources>

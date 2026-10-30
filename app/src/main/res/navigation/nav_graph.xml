@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/todayFragment">
+
+    <fragment
+        android:id="@+id/todayFragment"
+        android:name="com.apptech.streakly.ui.today.TodayFragment"
+        android:label="Today" />
+
+    <fragment
+        android:id="@+id/statsFragment"
+        android:name="com.apptech.streakly.ui.stats.StatsFragment"
+        android:label="Stats" />
+
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.apptech.streakly.ui.calendar.CalendarFragment"
+        android:label="Calendar" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.apptech.streakly.ui.settings.SettingsFragment"
+        android:label="Settings" />
+
+</navigation>

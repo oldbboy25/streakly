@@ -7,21 +7,23 @@
     android:padding="32dp">
 
     <FrameLayout
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:background="@drawable/bg_emoji_circle">
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:background="@drawable/bg_pill_white_15">
 
         <TextView
             android:id="@+id/page_emoji"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textSize="56sp" />
+            android:textSize="64sp" />
     </FrameLayout>
 
     <TextView
         android:id="@+id/page_title"
         style="?attr/textAppearanceHeadlineSmall"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -31,7 +33,7 @@
     <TextView
         android:id="@+id/page_subtitle"
         style="?attr/textAppearanceBodyLarge"
-        android:textColor="?attr/colorOnSurfaceVariant"
+        android:textColor="#E3DBFF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"

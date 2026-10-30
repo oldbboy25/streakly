@@ -1,8 +1,8 @@
 # Keep Room-generated code and entities
--keep class com.streakly.app.model.** { *; }
--keep class com.streakly.app.db.** { *; }
+-keep class com.apptech.streakly.model.** { *; }
+-keep class com.apptech.streakly.db.** { *; }
 
 # Gson needs field names preserved on backup POJOs
--keepclassmembers class com.streakly.app.backup.** { *; }
+-keepclassmembers class com.apptech.streakly.backup.** { *; }
 -keepattributes Signature
 -keepattributes *Annotation*

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Themed-icon silhouette (Android 13+ Material You icon theming). Same ring+checkmark
+     geometry as ic_launcher_foreground, flattened into one shape and one color since the
+     system re-tints this entirely and ignores any color we set here. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FF000000"
+        android:fillType="evenOdd"
+        android:pathData="M22,54 A32,32 0 1,0 86,54 A32,32 0 1,0 22,54 Z
+                           M30.1,54 A23.9,23.9 0 1,0 77.9,54 A23.9,23.9 0 1,0 30.1,54 Z" />
+    <path
+        android:strokeColor="#FF000000"
+        android:strokeWidth="7"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M43.75,54.37 L51.76,62.39 L65.56,46.17" />
+</vector>

@@ -34,6 +34,7 @@ public class StatsViewModel extends AndroidViewModel {
         public List<String> chartLabels = new ArrayList<>();
         public float distributionCompleted;
         public float distributionMissed;
+        public int successRateDeltaPercent;
         public List<HabitStatRow> habitRows = new ArrayList<>();
     }
 
@@ -129,9 +130,46 @@ public class StatsViewModel extends AndroidViewModel {
             data.distributionMissed = 1f - data.distributionCompleted;
         }
 
+        data.successRateDeltaPercent = computePreviousPeriodDeltaPercent(
+                rangeStart, todayEpochDay, completedDaysByHabit, data.distributionCompleted);
+
         buildChart(data, rangeStart, todayEpochDay, completedDaysByHabit);
 
         overview.setValue(data);
+    }
+
+    /** Compares the current range's completion rate against the equal-length period right
+     * before it, so the Stats screen can show a "+5%" / "-3%" trend rather than a bare number. */
+    private int computePreviousPeriodDeltaPercent(long rangeStart, long todayEpochDay,
+                                                    Map<Long, Set<Long>> completedDaysByHabit,
+                                                    float currentRate) {
+        if (currentRange == Range.ALL_TIME) {
+            return 0;
+        }
+        long rangeLengthDays = todayEpochDay - rangeStart + 1;
+        long prevEnd = rangeStart - 1;
+        long prevStart = prevEnd - rangeLengthDays + 1;
+
+        long dueCount = 0;
+        long doneCount = 0;
+        for (Habit habit : latestHabits) {
+            Set<Long> days = completedDaysByHabit.getOrDefault(habit.id, new HashSet<>());
+            for (long day = prevStart; day <= prevEnd; day++) {
+                LocalDate date = LocalDate.ofEpochDay(day);
+                if (!habit.isScheduledOn(date.getDayOfWeek().getValue())) {
+                    continue;
+                }
+                dueCount++;
+                if (days.contains(day)) {
+                    doneCount++;
+                }
+            }
+        }
+        if (dueCount == 0) {
+            return 0;
+        }
+        float previousRate = (float) doneCount / dueCount;
+        return Math.round((currentRate - previousRate) * 100);
     }
 
     private long rangeStartEpochDay(long todayEpochDay) {

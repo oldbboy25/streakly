@@ -10,12 +10,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.apptech.streakly.R;
 import com.apptech.streakly.growth.ReviewPrompter;
 import com.apptech.streakly.model.Habit;
@@ -23,17 +25,15 @@ import com.apptech.streakly.notifications.ReminderScheduler;
 import com.apptech.streakly.repository.HabitRepository;
 import com.apptech.streakly.ui.addedit.TemplatePickerActivity;
 import com.apptech.streakly.ui.habitdetail.HabitDetailActivity;
+import com.apptech.streakly.ui.streaks.StreaksActivity;
 import com.apptech.streakly.ui.views.CircularProgressView;
 import com.apptech.streakly.ui.views.ConfettiView;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Set;
 
 public class TodayFragment extends Fragment {
@@ -44,6 +44,7 @@ public class TodayFragment extends Fragment {
     private TodayViewModel viewModel;
     private HabitRepository repository;
     private ConfettiView confettiView;
+    private LottieAnimationView celebrationLottie;
 
     @Nullable
     @Override
@@ -59,6 +60,14 @@ public class TodayFragment extends Fragment {
         viewModel = new ViewModelProvider(this).get(TodayViewModel.class);
         repository = HabitRepository.getInstance(requireContext());
         confettiView = view.findViewById(R.id.confetti_view);
+        celebrationLottie = view.findViewById(R.id.celebration_lottie);
+        celebrationLottie.setFailureListener(throwable -> {
+            // Swallow playback failures (e.g. a malformed/missing animation asset) so a
+            // celebration moment never crashes the app — confetti alone is enough.
+        });
+
+        view.findViewById(R.id.btn_streaks).setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), StreaksActivity.class)));
 
         RecyclerView recyclerView = view.findViewById(R.id.habit_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -109,10 +118,11 @@ public class TodayFragment extends Fragment {
         View emptyState = view.findViewById(R.id.empty_state);
         CircularProgressView progressRing = view.findViewById(R.id.today_progress_ring);
         TextView completionText = view.findViewById(R.id.today_completion_text);
-        TextView dateText = view.findViewById(R.id.today_date_text);
-
-        dateText.setText(DateTimeFormatter.ofPattern("EEEE, MMM d", Locale.getDefault())
-                .format(LocalDate.now()));
+        progressRing.setColors(
+                ContextCompat.getColor(requireContext(), R.color.white),
+                androidx.core.graphics.ColorUtils.setAlphaComponent(
+                        ContextCompat.getColor(requireContext(), R.color.white), 70),
+                ContextCompat.getColor(requireContext(), R.color.white));
 
         viewModel.getUiItems().observe(getViewLifecycleOwner(), (List<HabitUiItem> items) -> {
             adapter.submitList(items);
@@ -151,6 +161,8 @@ public class TodayFragment extends Fragment {
 
     private void celebrate(int streak) {
         confettiView.burst();
+        celebrationLottie.setVisibility(View.VISIBLE);
+        celebrationLottie.playAnimation();
         View root = getView();
         if (root != null) {
             root.performHapticFeedback(HapticFeedbackConstants.CONFIRM);

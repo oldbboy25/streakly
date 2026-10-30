@@ -29,10 +29,15 @@
         <activity
             android:name=".ui.onboarding.OnboardingActivity"
             android:exported="false"
-            android:theme="@style/Theme.Streakly" />
+            android:theme="@style/Theme.Streakly.Gradient" />
 
         <activity
             android:name=".ui.habitdetail.HabitDetailActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.MainActivity" />
+
+        <activity
+            android:name=".ui.streaks.StreaksActivity"
             android:exported="false"
             android:parentActivityName=".ui.MainActivity" />
 

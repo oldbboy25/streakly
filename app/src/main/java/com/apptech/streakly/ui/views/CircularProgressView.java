@@ -52,6 +52,14 @@ public class CircularProgressView extends View {
         textPaint.setFakeBoldText(true);
     }
 
+    /** Overrides the default theme colors, e.g. to render white-on-gradient inside a hero card. */
+    public void setColors(int progressColor, int trackColor, int textColor) {
+        progressPaint.setColor(progressColor);
+        trackPaint.setColor(trackColor);
+        textPaint.setColor(textColor);
+        invalidate();
+    }
+
     public void setProgress(float progress01) {
         float target = Math.max(0f, Math.min(1f, progress01));
         if (animator != null) {

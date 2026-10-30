@@ -1,11 +1,14 @@
 package com.apptech.streakly.ui.today;
 
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -77,6 +80,7 @@ public class HabitAdapter extends ListAdapter<HabitUiItem, HabitAdapter.ViewHold
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
+        private final FrameLayout iconFrame;
         private final TextView emoji;
         private final TextView name;
         private final TextView streakText;
@@ -85,6 +89,7 @@ public class HabitAdapter extends ListAdapter<HabitUiItem, HabitAdapter.ViewHold
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
+            iconFrame = itemView.findViewById(R.id.habit_icon_frame);
             emoji = itemView.findViewById(R.id.habit_emoji);
             name = itemView.findViewById(R.id.habit_name);
             streakText = itemView.findViewById(R.id.habit_streak_text);
@@ -96,6 +101,7 @@ public class HabitAdapter extends ListAdapter<HabitUiItem, HabitAdapter.ViewHold
             emoji.setText(item.habit.emoji);
             name.setText(item.habit.name);
             flame.setActive(item.currentStreak > 0);
+            tintIconFrame(iconFrame, item.habit.colorHex);
 
             Resources res = itemView.getResources();
             streakText.setText(res.getString(R.string.streak_current_format, item.currentStreak));
@@ -120,6 +126,26 @@ public class HabitAdapter extends ListAdapter<HabitUiItem, HabitAdapter.ViewHold
                     listener.onOpenDetail(item);
                 }
             });
+        }
+
+        /** Tints each habit's icon circle with a soft (20% alpha) wash of its own color, so
+         * the list reads as colorful at a glance instead of every row looking identical. */
+        private void tintIconFrame(FrameLayout frame, String colorHex) {
+            int color;
+            try {
+                color = colorHex == null ? Color.TRANSPARENT : Color.parseColor(colorHex);
+            } catch (IllegalArgumentException e) {
+                color = Color.TRANSPARENT;
+            }
+            if (color == Color.TRANSPARENT) {
+                frame.setBackgroundResource(R.drawable.bg_emoji_circle);
+                return;
+            }
+            int wash = Color.argb(38, Color.red(color), Color.green(color), Color.blue(color));
+            GradientDrawable drawable = new GradientDrawable();
+            drawable.setShape(GradientDrawable.OVAL);
+            drawable.setColor(wash);
+            frame.setBackground(drawable);
         }
 
         private void animateCheck(View view) {

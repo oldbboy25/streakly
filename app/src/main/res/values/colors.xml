@@ -1,65 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Brand palette: Shadow Grey #1E1E24, Blood Red #92140C, Floral White #FFF8F0.
-         Red is reserved for accents on LIGHT surfaces only, since its contrast against
-         the dark grey is too low to use directly on it (checked: ~1.4:1), so dark
-         surfaces pair with Floral White foregrounds instead, and red stays an accent
-         used only on light backgrounds. -->
-    <color name="md_primary">#92140C</color>
-    <color name="md_on_primary">#FFF8F0</color>
-    <color name="md_primary_container">#F0D7D0</color>
-    <color name="md_on_primary_container">#2E0A07</color>
+    <!-- Brand palette: vivid violet primary over a near-white lavender surface, with a
+         warm amber/gold accent reserved for streak + trophy moments so the "win" states
+         read distinctly from the everyday purple chrome. -->
+    <color name="md_primary">#6C4FEB</color>
+    <color name="md_on_primary">#FFFFFF</color>
+    <color name="md_primary_container">#ECE6FD</color>
+    <color name="md_on_primary_container">#281A66</color>
 
-    <color name="md_secondary">#1E1E24</color>
-    <color name="md_secondary_container">#E4E3E6</color>
+    <color name="md_secondary">#4A4660</color>
+    <color name="md_secondary_container">#F1EEFB</color>
 
-    <color name="md_background">#FFF8F0</color>
-    <color name="md_on_background">#1E1E24</color>
-    <color name="md_surface">#FFF8F0</color>
-    <color name="md_surface_variant">#EAE6E3</color>
-    <color name="md_surface_container">#F2ECE8</color>
-    <color name="md_on_surface">#1E1E24</color>
-    <color name="md_on_surface_variant">#5C5650</color>
-    <color name="md_outline">#8A827A</color>
+    <color name="md_background">#F7F6FC</color>
+    <color name="md_on_background">#1C1B29</color>
+    <color name="md_surface">#FFFFFF</color>
+    <color name="md_surface_variant">#EFEBFB</color>
+    <color name="md_surface_container">#F5F3FC</color>
+    <color name="md_on_surface">#1C1B29</color>
+    <color name="md_on_surface_variant">#6B6880</color>
+    <color name="md_outline">#D8D4EC</color>
 
-    <color name="md_background_dark">#1E1E24</color>
-    <color name="md_surface_dark">#1E1E24</color>
-    <color name="md_surface_container_dark">#2A2A32</color>
-    <color name="md_surface_variant_dark">#3A3840</color>
-    <color name="md_on_surface_dark">#FFF8F0</color>
-    <color name="md_on_surface_variant_dark">#C9C6C2</color>
-    <color name="md_outline_dark">#7A7680</color>
-    <color name="md_primary_dark">#E0503F</color>
-    <color name="md_on_primary_dark">#FFF8F0</color>
-    <color name="md_primary_container_dark">#5A1F18</color>
-    <color name="md_on_primary_container_dark">#FFD9D0</color>
-    <color name="md_secondary_dark">#C9C6C2</color>
-    <color name="md_secondary_container_dark">#35343A</color>
+    <color name="md_background_dark">#15131F</color>
+    <color name="md_surface_dark">#1C1A29</color>
+    <color name="md_surface_container_dark">#242232</color>
+    <color name="md_surface_variant_dark">#322E47</color>
+    <color name="md_on_surface_dark">#F1EFFA</color>
+    <color name="md_on_surface_variant_dark">#B8B4CF</color>
+    <color name="md_outline_dark">#4A4660</color>
+    <color name="md_primary_dark">#A48AFF</color>
+    <color name="md_on_primary_dark">#1C1240</color>
+    <color name="md_primary_container_dark">#3A2D7A</color>
+    <color name="md_on_primary_container_dark">#E3DBFF</color>
+    <color name="md_secondary_dark">#C9C4E0</color>
+    <color name="md_secondary_container_dark">#322E47</color>
 
-    <!-- Bottom nav is a light bar matching the rest of the app's surfaces (was a dark
-         bar matching the icon/splash; user found that too dark). -->
-    <color name="bottom_nav_background">#F2ECE8</color>
-    <color name="bottom_nav_icon_selected">#92140C</color>
-    <color name="bottom_nav_icon_unselected">#8A827A</color>
+    <!-- Bottom nav is a Material BottomNavigationView now: white bar, purple selected
+         state with a soft pill indicator behind the icon. -->
+    <color name="bottom_nav_background">#FFFFFF</color>
+    <color name="bottom_nav_background_dark">#1C1A29</color>
+    <color name="bottom_nav_icon_selected">#6C4FEB</color>
+    <color name="bottom_nav_icon_unselected">#9490A8</color>
+    <color name="bottom_nav_indicator">#ECE6FD</color>
 
-    <color name="flame_active">#92140C</color>
-    <color name="flame_inactive">#C9C4BE</color>
-    <color name="chart_bar">#92140C</color>
-    <color name="chart_bar_track">#EAE6E3</color>
+    <!-- Hero gradient: used on the Today streak card, splash and onboarding backgrounds. -->
+    <color name="gradient_primary_start">#8F6FFF</color>
+    <color name="gradient_primary_end">#5B3FD9</color>
+
+    <!-- Gold/trophy gradient: reserved for the Streaks & Awards celebration card. -->
+    <color name="gradient_gold_start">#FFD66B</color>
+    <color name="gradient_gold_end">#FF9F43</color>
+
+    <color name="flame_active">#FF7A33</color>
+    <color name="flame_inactive">#D9D5EC</color>
+    <color name="chart_bar">#6C4FEB</color>
+    <color name="chart_bar_track">#ECE8FB</color>
+
+    <color name="accent_success">#1FAE6B</color>
+    <color name="accent_success_container">#DFF6EA</color>
+    <color name="accent_error">#FF5470</color>
+    <color name="accent_error_container">#FFE3E9</color>
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
 
     <!-- Habit color swatches: kept as a varied multi-color picker (independent of the
-         app's own 3-color brand) so users can still visually tell their own habits
-         apart. Recoloring these to only grey/red/white would remove that. -->
-    <color name="swatch_green">#13874F</color>
-    <color name="swatch_blue">#1E6FA8</color>
-    <color name="swatch_purple">#7B4FB0</color>
-    <color name="swatch_orange">#D9731F</color>
-    <color name="swatch_red">#C23B30</color>
-    <color name="swatch_teal">#1A8F86</color>
-    <color name="swatch_pink">#C44E82</color>
-    <color name="swatch_gray">#53615A</color>
+         app's own brand purple) so users can still visually tell their own habits apart. -->
+    <color name="swatch_green">#1FAE6B</color>
+    <color name="swatch_blue">#2E8BE6</color>
+    <color name="swatch_purple">#6C4FEB</color>
+    <color name="swatch_orange">#FF9F43</color>
+    <color name="swatch_red">#FF5470</color>
+    <color name="swatch_teal">#1FB6B0</color>
+    <color name="swatch_pink">#F060A8</color>
+    <color name="swatch_gray">#6B6880</color>
 </resources>

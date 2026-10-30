@@ -1,6 +1,7 @@
 package com.apptech.streakly.ui.stats;
 
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +18,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.apptech.streakly.R;
-import com.apptech.streakly.ui.views.DonutChartView;
-import com.apptech.streakly.ui.views.SimpleBarChartView;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.google.android.material.chip.ChipGroup;
 
 import java.util.ArrayList;
@@ -43,17 +53,24 @@ public class StatsFragment extends Fragment {
         TextView totalHabitsText = view.findViewById(R.id.stats_total_habits);
         TextView totalCompletionsText = view.findViewById(R.id.stats_total_completions);
         TextView bestStreakText = view.findViewById(R.id.stats_best_streak);
-        SimpleBarChartView chart = view.findViewById(R.id.stats_chart);
-        DonutChartView donut = view.findViewById(R.id.stats_donut);
+        TextView successRateText = view.findViewById(R.id.stats_success_rate_text);
+        TextView successRateDeltaText = view.findViewById(R.id.stats_success_rate_delta);
+        TextView insightText = view.findViewById(R.id.stats_insight_text);
+        LineChart lineChart = view.findViewById(R.id.stats_line_chart);
+        PieChart pieChart = view.findViewById(R.id.stats_pie_chart);
         TextView legendCompleted = view.findViewById(R.id.legend_text_completed);
         TextView legendMissed = view.findViewById(R.id.legend_text_missed);
         RecyclerView recyclerView = view.findViewById(R.id.stats_habit_recycler);
         ChipGroup rangeChipGroup = view.findViewById(R.id.stats_range_chip_group);
 
-        int completedColor = ContextCompat.getColor(requireContext(), R.color.swatch_green);
-        int missedColor = ContextCompat.getColor(requireContext(), R.color.md_primary);
+        int primaryColor = ContextCompat.getColor(requireContext(), R.color.chart_bar);
+        int completedColor = ContextCompat.getColor(requireContext(), R.color.accent_success);
+        int missedColor = ContextCompat.getColor(requireContext(), R.color.md_outline);
         view.findViewById(R.id.legend_dot_completed).setBackgroundTintList(ColorStateList.valueOf(completedColor));
         view.findViewById(R.id.legend_dot_missed).setBackgroundTintList(ColorStateList.valueOf(missedColor));
+
+        setUpLineChart(lineChart, primaryColor);
+        setUpPieChart(pieChart);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         HabitStatAdapter adapter = new HabitStatAdapter();
@@ -80,16 +97,98 @@ public class StatsFragment extends Fragment {
             totalCompletionsText.setText(getString(R.string.stats_total_completions_format, overview.totalCompletions));
             bestStreakText.setText(getString(R.string.stats_best_streak_format, overview.bestStreak));
 
-            chart.setValues(overview.chartValues, overview.chartLabels);
+            int successPercent = Math.round(overview.distributionCompleted * 100);
+            successRateText.setText(successPercent + "%");
 
-            donut.setSegments(
-                    Arrays.asList(overview.distributionCompleted, overview.distributionMissed),
-                    Arrays.asList(completedColor, missedColor));
+            int delta = overview.successRateDeltaPercent;
+            String arrow = delta >= 0 ? "↑" : "↓";
+            successRateDeltaText.setText(String.format("%s %s%d%%", arrow, delta >= 0 ? "+" : "", delta));
+            successRateDeltaText.setTextColor(delta >= 0 ? completedColor
+                    : ContextCompat.getColor(requireContext(), R.color.accent_error));
+
+            updateLineChart(lineChart, overview.chartValues, overview.chartLabels, primaryColor);
+            updatePieChart(pieChart, overview.distributionCompleted, overview.distributionMissed,
+                    completedColor, missedColor);
+
             legendCompleted.setText(getString(R.string.stats_completed_label, Math.round(overview.distributionCompleted * 100)));
             legendMissed.setText(getString(R.string.stats_missed_label, Math.round(overview.distributionMissed * 100)));
+            insightText.setText(getString(R.string.stats_overview_insight_format, successPercent));
 
             adapter.submitRows(overview.habitRows);
         });
+    }
+
+    private void setUpLineChart(LineChart chart, int primaryColor) {
+        chart.getDescription().setEnabled(false);
+        chart.getLegend().setEnabled(false);
+        chart.setTouchEnabled(false);
+        chart.setDrawGridBackground(false);
+        chart.setExtraOffsets(0f, 4f, 0f, 4f);
+
+        XAxis xAxis = chart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setDrawGridLines(false);
+        xAxis.setDrawAxisLine(false);
+        xAxis.setTextColor(ContextCompat.getColor(requireContext(), R.color.md_on_surface_variant));
+        xAxis.setTextSize(10f);
+
+        chart.getAxisRight().setEnabled(false);
+        chart.getAxisLeft().setEnabled(false);
+    }
+
+    private void updateLineChart(LineChart chart, List<Float> values, List<String> labels, int primaryColor) {
+        List<Entry> entries = new ArrayList<>();
+        for (int i = 0; i < values.size(); i++) {
+            entries.add(new Entry(i, values.get(i) * 100f));
+        }
+
+        LineDataSet dataSet = new LineDataSet(entries, "success");
+        dataSet.setColor(primaryColor);
+        dataSet.setLineWidth(2.5f);
+        dataSet.setDrawCircles(true);
+        dataSet.setCircleColor(primaryColor);
+        dataSet.setCircleRadius(3.5f);
+        dataSet.setDrawCircleHole(false);
+        dataSet.setDrawValues(false);
+        dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        dataSet.setDrawFilled(true);
+        dataSet.setFillColor(primaryColor);
+        dataSet.setFillAlpha(40);
+
+        chart.setData(new LineData(dataSet));
+        chart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
+        chart.getXAxis().setLabelCount(Math.min(labels.size(), 7));
+        chart.animateY(500);
+        chart.invalidate();
+    }
+
+    private void setUpPieChart(PieChart chart) {
+        chart.getDescription().setEnabled(false);
+        chart.getLegend().setEnabled(false);
+        chart.setDrawEntryLabels(false);
+        chart.setHoleRadius(72f);
+        chart.setTransparentCircleRadius(0f);
+        chart.setHoleColor(Color.TRANSPARENT);
+        chart.setRotationEnabled(false);
+        chart.setTouchEnabled(false);
+    }
+
+    private void updatePieChart(PieChart chart, float completed, float missed, int completedColor, int missedColor) {
+        List<PieEntry> entries = new ArrayList<>();
+        entries.add(new PieEntry(Math.max(completed, 0.001f)));
+        entries.add(new PieEntry(Math.max(missed, 0.001f)));
+
+        PieDataSet dataSet = new PieDataSet(entries, "");
+        dataSet.setColors(completedColor, missedColor);
+        dataSet.setDrawValues(false);
+        dataSet.setSliceSpace(2f);
+
+        chart.setCenterText(Math.round(completed * 100) + "%");
+        chart.setCenterTextSize(18f);
+        chart.setCenterTextColor(ContextCompat.getColor(requireContext(), R.color.md_on_surface));
+        chart.setData(new PieData(dataSet));
+        chart.animateY(600);
+        chart.invalidate();
     }
 
     private static class HabitStatAdapter extends RecyclerView.Adapter<HabitStatAdapter.RowHolder> {

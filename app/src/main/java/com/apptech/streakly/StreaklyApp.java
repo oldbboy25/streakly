@@ -9,12 +9,15 @@ import androidx.lifecycle.ProcessLifecycleOwner;
 
 import com.apptech.streakly.backup.BackupManager;
 import com.apptech.streakly.repository.HabitRepository;
+import com.apptech.streakly.work.WidgetRefreshWorker;
 
 public class StreaklyApp extends Application {
 
     @Override
     public void onCreate() {
         super.onCreate();
+
+        WidgetRefreshWorker.schedulePeriodic(this);
 
         // Dynamic color (Material You) is intentionally NOT applied here: it pulls
         // tones from the device wallpaper, and some OEM skins (e.g. MIUI) apply it
